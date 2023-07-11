@@ -45,6 +45,25 @@ class FcmData(object):
     def __array__(self):
         return self.events
 
+### SINGLE-CELL EXTENSION
+
+def loadSingleCellDataset(filename, *args, **kwargs):
+    # loads single cell datasets
+    data_raw = np.loadtxt(filename, delimiter= '\t', dtype=str)
+
+    genes = list(data_raw[1:,0])
+    cells = list(data_raw[0,1:])
+    dataset = data_raw[1:, 1:].astype(float).transpose()
+
+    return SCData(dataset, genes, cells)
+
+class SCData(object):
+    def __init__(self, dataset, genes, cells):
+        self.genes = genes
+        self.dataset = dataset
+        self.cells = cells
+        self.shape = dataset.shape
+
 
 def mkdir_p(path):
     try:
@@ -55,6 +74,7 @@ def mkdir_p(path):
         else:
             raise
 
+###
 
 def get_data(indir, info, marker_names, do_arcsinh, cofactor):
     fnames, phenotypes = info[:, 0], info[:, 1]
