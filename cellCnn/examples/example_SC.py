@@ -139,7 +139,7 @@ _ = plot_results(model.results, test_samples, test_phenotypes,
 # and it is positively associated with class 1, that is CMV+ samples.
 
 from IPython.display import Image
-Image("./output_NK/consensus_filter_weights.png", width=600, height=350)
+Image("./output_test/consensus_filter_weights.png", width=600, height=350)
 
 # We also see that filter 0 is more discriminative than filter 1,
 # because the average cell filter response difference between CMV+
@@ -153,7 +153,7 @@ Image("./output_NK/consensus_filter_weights.png", width=600, height=350)
 # `filter_diff[i-1] - filter_diff[i] < filter_diff_thres * filter_diff[i-1]`.
 # The default value is `filter_diff_thres`=0.2
 
-Image("./output_NK/filter_response_differences.png", width=600, height=350)
+Image("./output_test/filter_response_differences.png", width=600, height=350)
 
 # For filters selected as discriminative via the previously described step,
 # we can inspect the cumulative distribution function (CDF) of the cell filter response.
@@ -166,7 +166,7 @@ Image("./output_NK/cdf_filter_0.png", width=600, height=350)
 # This plots can give us a hint about a suitable filter response cutoff threshold for the selected population.
 # Here a reasonable value for this threshold is e.g. 0.7
 
-Image("./output_NK/tsne_cell_response_filter_0.png")
+Image("./output_test/tsne_cell_response_filter_0.png")
 
 # We plot again, now using a more stringent cutoff (filter_response_thres=0.7)
 # on the cell filter response of the selected cell population.
@@ -175,7 +175,7 @@ _ = plot_results(model.results, test_samples, test_phenotypes,
                  sc_genes, OUTDIR, filter_response_thres=0.7,
                  filter_diff_thres=0.2, group_a='CMV-', group_b='CMV+')
 
-Image("./output_NK/cdf_filter_0.png", width=600, height=350)
+Image("./output_test/cdf_filter_0.png", width=600, height=350)
 
 # Marker abundance histograms of each selected cell population are compared
 # with the corresponding marker abundance histograms of all cells. The distance between
@@ -183,9 +183,9 @@ Image("./output_NK/cdf_filter_0.png", width=600, height=350)
 
 # Here the selected cell population is now a CD57+ NKG2C+ NK cell subset
 
-Image("./output_NK/selected_population_distribution_filter_0.png")
+Image("./output_test/selected_population_distribution_filter_0.png")
 
 # For binary classification problems, we also get a boxplot of frequencies of the selected
 # cell population in samples of the two classes.
 
-Image("./output_NK/selected_population_frequencies_filter_0.png", width=300, height=175)
+Image("./output_test/selected_population_frequencies_filter_0.png", width=300, height=175)
