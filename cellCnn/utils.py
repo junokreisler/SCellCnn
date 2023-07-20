@@ -64,6 +64,22 @@ class SCData(object):
         self.cells = cells
         self.shape = dataset.shape
 
+def get_sc_data(indir, sc_info, gene_names, cofactor, do_arcsinh = False):
+    '''
+    Unlike FC data, for SC data assume that the input dataset has already been transformed.
+    '''
+    fnames, phenotypes = sc_info[:, 0], sc_info[:, 1]
+    sample_list = []
+    for fname in fnames:
+        full_path = os.path.join(indir, fname)
+        sc_dataset = loadSingleCellDataset(full_path, transform=None, auto_comp=False)
+        gene_idx = [sc_dataset.genes.index(name) for name in gene_names]
+        x = sc_dataset.dataset[:, gene_idx]
+        if do_arcsinh:
+            x = ftrans(x, cofactor)
+        sample_list.append(x)
+    return sample_list, list(phenotypes)
+
 
 def mkdir_p(path):
     try:
