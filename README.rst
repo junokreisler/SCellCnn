@@ -5,7 +5,10 @@ SCellCnn
 
 SCseq-compatible add-on to the CellCnn package for Python 3.7
 
-Changes: celCnn.utils now contains an extra class SCData(dataset, genes, cells) with expression data oriented appropriately for cellCNN analysis.
+Changes: 
+
+* cellCnn.utils now contains an extra class SCData(dataset, genes, cells) with expression data oriented appropriately for cellCNN analysis.
+* new run_sc_analysis function that requires the directory of all .txt files with normalized SCseq data together with a csv file containing genes of interest for the cellCNN analysis.
 
 For a working example, please see SC_test.py in the cellCnn/examples folder.
 
